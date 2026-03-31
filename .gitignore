@@ -1,0 +1,10 @@
+CMakeFiles/
+CMakeCache.txt
+cmake_install.cmake
+Makefile
+code
+solution.o
+*.o
+*.out
+test_input.txt
+test_output.txt

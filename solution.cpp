@@ -10,7 +10,7 @@ int adj[MAXN][MAXN];
 long long dp[MAXN][MAXN];
 bool vis[MAXN][MAXN];
 
-// dp[l][r] = number of non-crossing trees on interval [l, r] (line, not circle)
+// dp[l][r] = number of non-crossing trees on interval [l, r]
 // Pick the "first edge" from l
 long long solve(int l, int r) {
     if (l > r) return 1; // empty interval
@@ -53,33 +53,7 @@ int main() {
 
     memset(vis, false, sizeof(vis));
 
-    // For a circle: try all possible "breaking edges"
-    // An edge (i, j) can "break" the circle
-    // Sum over all edges (i, j)
-    long long ans = 0;
-
-    for (int i = 0; i < n; i++) {
-        for (int j = i + 1; j < n; j++) {
-            if (!adj[i][j]) continue;
-
-            // Break circle at edge (i, j)
-            // This leaves us with nodes [j+1, n-1, 0, i-1] as a line
-            // We need to count trees on this line that don't include edge (i,j)
-            // Actually, that's not right...
-
-            // When we "break" at edge (i,j), we're saying this edge is NOT in the tree
-            // Then we count trees on the line [i+1, j-1, j, ..., but wait, j must connect somehow
-
-            // Actually, I think "breaking" means: this edge IS in the tree
-            // Then the rest forms a line
-
-            // Hmm, this is getting confusing. Let me think...
-        }
-    }
-
-    // For a circle of nodes, we multiply by n (rotat symmetry)
-    long long line_answer = solve(0, n - 1);
-    cout << (line_answer * n) % MOD << endl;
+    cout << solve(0, n - 1) << endl;
 
     return 0;
 }
